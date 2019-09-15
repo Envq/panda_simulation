@@ -37,7 +37,7 @@
             "command": "rosrun",
             "args": [
                 "panda_controller",
-                "load_scene"
+                "move_arm"
             ],
             "problemMatcher": [],
             "group": "build",
@@ -45,6 +45,20 @@
                 "focus": true
             },
             "dependsOn":["build"]
+        },
+        {
+            "label": "move_arm",
+            "type": "shell",
+            "command": "roslaunch",
+            "args": [
+                "panda_controller",
+                "move_arm.launch"
+            ],
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "focus": true
+            }
         },
         {
             "label": "load_scene",

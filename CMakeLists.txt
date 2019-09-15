@@ -59,8 +59,11 @@ include_directories(
 )
 
 ## My libs directory
-file(GLOB_RECURSE MY_LIBS_DIR ${PROJECT_SOURCE_DIR}/src/my_libs/*.cpp)
+set(MY_LIBS ${PROJECT_SOURCE_DIR}/src/my_libs)
 
 
-add_executable(load_scene  ${MY_LIBS_DIR} src/load_scene.cpp)
+add_executable(load_scene  src/load_scene.cpp ${MY_LIBS}/scene_planner.cpp)
 target_link_libraries(load_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})
+
+add_executable(move_arm  src/move_arm.cpp)
+target_link_libraries(move_arm ${catkin_LIBRARIES})
