@@ -1,0 +1,56 @@
+{
+    "name": "Environmnet",
+    "objects": [
+        {
+            "id": "floor",
+            "type": "box",
+            "color": {
+                "r": 0.6,
+                "g": 0.4,
+                "b": 0.2,
+                "a": 1.0
+            },
+            "dimensions": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 0.1
+            },
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.05
+            },
+            "orientation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "id": "target",
+            "type": "cylinder",
+            "color": {
+                "r": 1.0,
+                "g": 0.2,
+                "b": 0.0,
+                "a": 1.0
+            },
+            "dimensions": {
+                "r": 0.025,
+                "h": 0.3
+            },
+            "position": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.2
+            },
+            "orientation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ]
+}

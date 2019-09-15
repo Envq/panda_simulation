@@ -1,0 +1,127 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "catkin",
+            "args": [
+                "build",
+                "panda_controller"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "focus": true
+            }
+        },
+        {
+            "label": "simulation",
+            "type": "shell",
+            "command": "roslaunch",
+            "args": [
+                "panda_controller",
+                "simulation.launch"
+            ],
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "focus": true
+            }
+        },
+        {
+            "label": "build&run",
+            "type": "shell",
+            "command": "rosrun",
+            "args": [
+                "panda_controller",
+                "load_scene"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "focus": true
+            },
+            "dependsOn":["build"]
+        },
+        {
+            "label": "load_scene",
+            "type": "shell",
+            "command": "rosrun",
+            "args": [
+                "panda_controller",
+                "load_scene"
+            ],
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "focus": true
+            }
+        },
+        {
+            "label": "format",
+            "type": "shell",
+            "command": "clang-format",
+            "args": [
+                "-i",
+                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/src/my_libs/*.cpp",
+                "${workspaceFolder}/include/*.hpp"
+            ],
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "reveal": "never"
+            }
+        },
+        {
+            "label": "build_all",
+            "type": "shell",
+            "command": "catkin",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "focus": true
+            }
+        },
+        {
+            "label": "clean_all",
+            "type": "shell",
+            "command": "catkin",
+            "args": [
+                "clean"
+            ],
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "focus": true
+            }
+        },
+        {
+            "label": "config_all",
+            "type": "shell",
+            "command": "catkin",
+            "args": [
+                "config",
+                "-j$(nproc)",
+                "--extend ",
+                "/opt/ros/${ROS_DISTRO}",
+                "--cmake-args",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DFranka_DIR:PATH=$HOME/github/libfranka/build",
+                "-DCMAKE_CXX_STANDARD=14",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+            ],
+            "problemMatcher": [],
+            "group": "none",
+            "presentation": {
+                "focus": true
+            }
+        }
+    ]
+}
