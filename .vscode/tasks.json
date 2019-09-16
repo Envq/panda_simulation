@@ -34,10 +34,10 @@
         {
             "label": "build&run",
             "type": "shell",
-            "command": "rosrun",
+            "command": "roslaunch",
             "args": [
                 "panda_controller",
-                "move_arm"
+                "move_arm.launch"
             ],
             "problemMatcher": [],
             "group": "build",

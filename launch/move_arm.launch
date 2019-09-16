@@ -1,9 +1,12 @@
 <launch>
 
-  <node name="move_arm" pkg="moveit_tutorials" type="move_arm" respawn="false" output="screen">
+  <node name="move_arm" pkg="panda_controller" type="move_arm" respawn="false" output="screen">
     <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+
+    <!-- white here the planning plugin to use -->
     <param name="/planning_plugin" value="ompl_interface/OMPLPlanner"/>
+
     <rosparam command="load" file="$(find panda_moveit_config)/config/ompl_planning.yaml"/>
   </node>
 
-</launch
+</launch>
