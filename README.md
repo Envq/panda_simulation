@@ -56,6 +56,14 @@ sudo apt install ros-melodic-catkin python-catkin-tools
 
 - Prepare workspace:
 ~~~
+echo 'export ROS_OS_OVERRIDE=ubuntu:18.04:bionic' >> ~/.bashrc
+
+echo 'export LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
+
+echo 'source ~/panda_ws/devel/setup.bash' >> ~/.bashrc
+
+source ~/.bashrc
+
 mkdir -p ~/panda_ws/src
 
 cd ~/panda_ws/src
@@ -79,20 +87,11 @@ catkin init
 
 ---
 ### Building from source
-
-For build:
 ~~~
 catkin build
 ~~~
 
-For setup the environment
-~~~
-cd
 
-echo 'export LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
-
-echo 'source ~/panda_ws/devel/setup.bash' >> ~/.bashrc
-~~~
 
 ---
 ### Execute
