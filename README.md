@@ -49,7 +49,12 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 ~~~
 
-- Prepare workspace
+- Install catkin:
+~~~
+sudo apt install ros-melodic-catkin python-catkin-tools
+~~~
+
+- Prepare workspace:
 ~~~
 mkdir -p ~/panda_ws/src
 
@@ -146,6 +151,20 @@ Note:
 
 ---
 ## VSCode
+I used these extensions:
+- **ros** by microsoft
+- **c/c++** by microsoft
+- **c/c++ snippets** by harsh
+- **c++ intellisense** by austin
+- **python** by microsoft
+- **clang-format** by xaver
+- **doxgen documentation** by christoph schlosser
+- **cmake** by twxs
+- **git history** by don jayamanne
+- **gruvbox mirror** by adamsome
+- **vscode-icons** by icons for visual studio code
+
+
 The following commands are available:
 - **build** : build panda_control package
 - **simulation**: launch simulation

@@ -1,29 +1,31 @@
 #!/bin/bash
+echo "###############################"
+echo "##  Install all dependencies  #"
+echo "###############################"
+sudo apt install build-essential cmake git libpoco-dev libeigen3-dev libboost-filesystem-dev clang-format ros-melodic-catkin python-catkin-tools
 
-echo "Install all dependencies"
-sudo apt install build-essential cmake git libpoco-dev libeigen3-dev libboost-filesystem-dev clang-format
 
 
-
-echo "Prepare workspace"
+echo "#######################"
+echo "##  Create workspace  #"
+echo "#######################"
 
 mkdir -p ~/panda_ws/src
 
-cd ../
+cd ~/panda_ws/src
 
-mv panda_controller ~/panda_ws/src
+echo "##  Move panda_controller directory  ##"
+mv panda_controller .
+
+echo "##  Get dependencies from github  ##"
 
 git clone https://github.com/erdalpekel/panda_moveit_config.git
 
 git clone --branch simulation https://github.com/erdalpekel/franka_ros.git
 
+echo "##  Install libfranka  ##"
 
-
-echo "Install libfranka"
-
-cd
-
-mkdir -p github
+mkdir -p ~/github
 
 cd ~/github
 
@@ -39,7 +41,17 @@ cmake --build .
 
 
 
-echo "Configure workspace"
+echo "##########################"
+echo "##  Configure workspace  #"
+echo "##########################"
+
+echo 'export ROS_OS_OVERRIDE=ubuntu:18.04:bionic' >> ~/.bashrc
+
+echo 'export LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
+
+echo 'source ~/panda_ws/devel/setup.bash' >> ~/.bashrc
+
+source ~/.bashrc
 
 cd ~/panda_ws
 
@@ -51,12 +63,8 @@ catkin init
 
 
 
-echo "Build"
-
-cd ~/panda_ws
+echo "######################"
+echo "##  Build workspace  #"
+echo "######################"
 
 catkin build
-
-echo 'export LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
-
-echo 'source ~/panda_ws/devel/setup.bash' >> ~/.bashrc
