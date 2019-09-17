@@ -16,7 +16,7 @@ moveit_msgs::ObjectColor create_object_color(const Json::Value &object,
 
 
 // PUBLIC FUNCTIONS:
-moveit_msgs::PlanningScene plan_scene(std::string NAME_SCENE) {
+moveit_msgs::PlanningScene plan_scene(std::string SCENE_NAME_FILE) {
     namespace fs = boost::filesystem;
 
     std::set<std::string> objects_id_set;  // To check if the object id readed is valid
@@ -26,7 +26,7 @@ moveit_msgs::PlanningScene plan_scene(std::string NAME_SCENE) {
 
     // Get scene file path and check if it's correct
     fs::path scene_file =
-        (ros::package::getPath(PACKAGE_NAME) + "/" + DIRECTORY_NAME + "/" + NAME_SCENE + ".json");
+        (ros::package::getPath(PACKAGE_NAME) + "/" + DIRECTORY_NAME + "/" + SCENE_NAME_FILE + ".json");
     if (!fs::exists(scene_file) || !fs::is_regular_file(scene_file)) {
         throw planning_error(std::string(scene_file.c_str()) + " does not exist or isn't a file");
     }

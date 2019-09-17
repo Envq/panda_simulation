@@ -34,10 +34,10 @@
         {
             "label": "build&run",
             "type": "shell",
-            "command": "rosrun",
+            "command": "roslaunch",
             "args": [
                 "panda_controller",
-                "load_scene"
+                "load_scene.launch"
             ],
             "problemMatcher": [],
             "group": "build",
@@ -49,10 +49,10 @@
         {
             "label": "load_scene",
             "type": "shell",
-            "command": "rosrun",
+            "command": "roslaunch",
             "args": [
                 "panda_controller",
-                "load_scene"
+                "load_scene.launch"
             ],
             "problemMatcher": [],
             "group": "test",
