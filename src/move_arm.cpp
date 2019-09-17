@@ -7,6 +7,7 @@
 
 // MoveIt
 #include <moveit/kinematic_constraints/utils.h>
+#include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_interface/planning_interface.h>
 #include <moveit/planning_scene/planning_scene.h>
 #include <moveit/robot_model_loader/robot_model_loader.h>
@@ -100,7 +101,7 @@ int main(int argc, char **argv) {
     }
 
 
-    //** VISUALIZATION SETUP **
+    //** VISUALIZATION SETUP
     namespace rvt = rviz_visual_tools;
     moveit_visual_tools::MoveItVisualTools visual_tools("panda_link0");
     visual_tools.loadRobotStatePub("/display_robot_state");
@@ -116,16 +117,19 @@ int main(int argc, char **argv) {
     visual_tools.trigger();
 
     // We can also use visual_tools to wait for user input
-    visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to start the demo");
+    visual_tools.prompt("Press 'next' 1");
 
 
 
     //**** START GOAL PLANNING ****
     // We will now create a motion plan request for the arm of the Panda
     // specifying the desired pose of the end-effector as input.
-    visual_tools.publishRobotState(planning_scene->getCurrentStateNonConst(),
-                                   rviz_visual_tools::GREEN);
+    // visual_tools.publishRobotState(planning_scene->getCurrentStateNonConst(),
+    //                                rviz_visual_tools::PINK);
     visual_tools.trigger();
+
+    visual_tools.prompt("Press 'next' 2");
+
 
 
     //**** MOTION PLANNING: POSE GOAL ****
@@ -155,8 +159,8 @@ int main(int argc, char **argv) {
     planning_request.goal_constraints.push_back(pose_goal);
 
     // Create planningContext (planningScene + motionPlanRequest) and solve it
-    planning_interface::PlanningContextPtr context =
-        planner_instance->getPlanningContext(planning_scene, planning_request, planning_response.error_code_);
+    planning_interface::PlanningContextPtr context = planner_instance->getPlanningContext(
+        planning_scene, planning_request, planning_response.error_code_);
     context->solve(planning_response);
     if (planning_response.error_code_.val != planning_response.error_code_.SUCCESS) {
         ROS_ERROR("Planning Context Error: Could not compute plan successfully");
@@ -173,7 +177,7 @@ int main(int argc, char **argv) {
     moveit_msgs::MotionPlanResponse response;
     planning_response.getMessage(response);
 
-    // Create the DisplayTectory msg to 
+    // Create the DisplayTectory msg to
     moveit_msgs::DisplayTrajectory display_trajectory;
     display_trajectory.trajectory_start = response.trajectory_start;
     display_trajectory.trajectory.push_back(response.trajectory);
@@ -197,9 +201,15 @@ int main(int argc, char **argv) {
     // visual_tools.publishText("text_pose", "Pose Goal (1)", rvt::WHITE, rvt::XLARGE);
     visual_tools.trigger();
 
-    // We can also use visual_tools to wait for user input 
+    // We can also use visual_tools to wait for user input
     visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
 
+    moveit::planning_interface::MoveGroupInterface move_group(PLANNING_GROUP);
+    moveit::planning_interface::MoveGroupInterface::Plan myplan;
+
+    // Construct a move_group plan from the planned trajectory
+    myplan.trajectory_ = response.trajectory;
+    move_group.execute(myplan);
 
     // Finish
     ros::shutdown();
