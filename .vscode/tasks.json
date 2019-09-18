@@ -37,7 +37,7 @@
             "command": "roslaunch",
             "args": [
                 "panda_controller",
-                "load_scene.launch"
+                "gazebo_scene.launch"
             ],
             "problemMatcher": [],
             "group": "build",
@@ -45,6 +45,20 @@
                 "focus": true
             },
             "dependsOn":["build"]
+        },
+        {
+            "label": "gazebo_scene",
+            "type": "shell",
+            "command": "roslaunch",
+            "args": [
+                "panda_controller",
+                "gazebo_scene.launch"
+            ],
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "focus": true
+            }
         },
         {
             "label": "load_scene",
