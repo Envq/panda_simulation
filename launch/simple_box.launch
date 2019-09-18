@@ -1,0 +1,6 @@
+<launch>
+	<!-- send urdf to param server -->
+	<param name="box_description" command="$(find xacro)/xacro $(find panda_controller)/models/simple_box.urdf" />
+	<!-- push object_description to factory and spawn robot in gazebo -->
+	<node name="spawn_object2" pkg="gazebo_ros" type="spawn_model" args="-urdf -param box_description -x 2.0 -model simple_box3" respawn="false" output="screen" />
+</launch>
