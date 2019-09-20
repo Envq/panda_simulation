@@ -45,7 +45,7 @@ void pick(moveit::planning_interface::MoveGroupInterface &move_group) {
     tf2::Quaternion orientation;
     orientation.setRPY(-M_PI / 2, -M_PI / 4, -M_PI / 2);
     grasps[0].grasp_pose.pose.orientation = tf2::toMsg(orientation);
-    grasps[0].grasp_pose.pose.position.x = 0.415;
+    grasps[0].grasp_pose.pose.position.x = 0.4;
     grasps[0].grasp_pose.pose.position.y = 0;
     grasps[0].grasp_pose.pose.position.z = 0.5;
 
@@ -91,8 +91,8 @@ void place(moveit::planning_interface::MoveGroupInterface &group) {
     place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
 
     // While placing it is the exact location of the center of the object
-    place_location[0].place_pose.pose.position.x = -0.5;
-    place_location[0].place_pose.pose.position.y = 0.0;
+    place_location[0].place_pose.pose.position.x = 0.0;
+    place_location[0].place_pose.pose.position.y = 0.5;
     place_location[0].place_pose.pose.position.z = 0.5;
 
 

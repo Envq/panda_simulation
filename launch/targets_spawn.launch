@@ -1,15 +1,18 @@
 <launch>
     <!-- send urdf to param server -->
-    <param name="target_location_description" command="$(find xacro)/xacro 
-		$(find panda_controller)/models/target_location.urdf.xacro" />
-    <param name="target_object_description" command="$(find xacro)/xacro 
-		$(find panda_controller)/models/target_object.urdf.xacro" />
+    <param name="table_description" command="$(find xacro)/xacro 
+		$(find panda_controller)/models/table.urdf.xacro" />
+    <param name="object_description" command="$(find xacro)/xacro 
+		$(find panda_controller)/models/object.urdf.xacro" />
 
 
     <!-- spawn objects in gazebo -->
-    <node name="spawn_target_location" pkg="gazebo_ros" type="spawn_model" 
-        args="-urdf -param target_location_description -model target_loc" respawn="false" />
+    <node name="spawn_table1" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param table_description -x 0.5 -model table1" respawn="false" />
 
-    <node name="spawn_target_object" pkg="gazebo_ros" type="spawn_model" 
-        args="-urdf -param target_object_description -model target_obj" respawn="false" />
+    <node name="spawn_table2" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param table_description -y 0.5 -model table2" respawn="false" />
+
+    <node name="spawn_object" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param object_description -model object" respawn="false" />
 </launch>
