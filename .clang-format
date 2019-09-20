@@ -1,7 +1,7 @@
 Language: Cpp
 IndentWidth: 4
 UseTab: Never
-ColumnLimit: 100
+ColumnLimit: 80
 
 # includes
 SortIncludes: true

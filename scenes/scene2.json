@@ -2,7 +2,7 @@
     "name": "Pick&Place",
     "objects": [
         {
-            "id": "floor",
+            "id": "table1",
             "type": "box",
             "color": {
                 "r": 0.6,
@@ -11,14 +11,14 @@
                 "a": 1.0
             },
             "dimensions": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 0.1
+                "x": 0.4,
+                "y": 0.4,
+                "z": 0.4
             },
             "position": {
-                "x": 0.0,
+                "x": 0.5,
                 "y": 0.0,
-                "z": -0.05
+                "z": 0.2
             },
             "orientation": {
                 "w": 1.0,
@@ -28,8 +28,34 @@
             }
         },
         {
-            "id": "target_object",
-            "type": "cylinder",
+            "id": "table2",
+            "type": "box",
+            "color": {
+                "r": 0.6,
+                "g": 0.4,
+                "b": 0.2,
+                "a": 1.0
+            },
+            "dimensions": {
+                "x": 0.4,
+                "y": 0.4,
+                "z": 0.4
+            },
+            "position": {
+                "x": -0.5,
+                "y": 0.0,
+                "z": 0.2
+            },
+            "orientation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "id": "object",
+            "type": "box",
             "color": {
                 "r": 1.0,
                 "g": 0.2,
@@ -37,39 +63,14 @@
                 "a": 1.0
             },
             "dimensions": {
-                "r": 0.025,
-                "h": 0.3
+                "x": 0.02,
+                "y": 0.02,
+                "z": 0.2
             },
             "position": {
                 "x": 0.5,
-                "y": 0.5,
-                "z": 0.15
-            },
-            "orientation": {
-                "w": 1.0,
-                "x": 0.0,
                 "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "id": "target_location",
-            "type": "box",
-            "color": {
-                "r": 1.0,
-                "g": 0.0,
-                "b": 0.0,
-                "a": 1.0
-            },
-            "dimensions": {
-                "x": 0.2,
-                "y": 0.2,
-                "z": 0.1
-            },
-            "position": {
-                "x": 0.5,
-                "y": -0.5,
-                "z": 0.05
+                "z": 0.5
             },
             "orientation": {
                 "w": 1.0,

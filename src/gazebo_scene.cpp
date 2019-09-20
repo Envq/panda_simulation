@@ -1,65 +1,67 @@
-#include <gazebo_msgs/SetModelState.h>
-#include <moveit/move_group_interface/move_group_interface.h>
-#include <moveit/robot_model_loader/robot_model_loader.h>
+#include "arm_jobs.hpp"
+// ROS
 #include <ros/ros.h>
-#include <sensor_msgs/JointState.h>
 
-static const std::string PLANNING_GROUP = "panda_arm";
-static const double PANDA_ARM_TO_HAND_OFFSET = 0.12;
-static const double PANDA_HAND_TO_FINGER_OFFSET = 0.04;
-ros::Publisher gazebo_model_state_pub;
-robot_model::RobotModelPtr kinematic_model;
-robot_state::RobotStatePtr kinematic_state;
+// MoveIt
+#include <moveit/move_group_interface/move_group_interface.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
 
-void jointStatesCallback(const sensor_msgs::JointState &joint_states_current);
+
+
+// Constants
+static const std::string ARM_GROUP = "panda_arm";
 
 
 
 int main(int argc, char **argv) {
-    // Get name
-    // const std::string NAME = std::string(argv[0]) + "_node";
-
     // Setup ROS
-    ros::init(argc, argv, "gazebo_scene");
-    ros::NodeHandle node_handle;
+    ros::init(argc, argv, argv[0]);
+    ros::NodeHandle node_handle("~");
+    ros::AsyncSpinner spinner(1);
+    spinner.start();
 
+    // Setup Moveit
+    moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
+    moveit::planning_interface::MoveGroupInterface group(ARM_GROUP);
 
-    // Get Robot Model and Robot State
-    robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
-    kinematic_model = robot_model_loader.getModel();
-    kinematic_state = robot_state::RobotStatePtr(new robot_state::RobotState(kinematic_model));
+    // Setup time
+    ros::WallDuration time(2.0);
 
-    // Create Publisher
-    gazebo_model_state_pub =
-        node_handle.advertise<gazebo_msgs::ModelState>("/gazebo/set_model_state", 1);
-
-
-
-    // Define a pose (specified relative to frame_id)
-    geometry_msgs::Pose pose;
-    pose.orientation.w = 1.0;
-    pose.orientation.x = 0.0;
-    pose.orientation.y = 0.0;
-    pose.orientation.z = 0.0;
-
-
-    // Set potision information
-    // Note: MoveIt! planning scene expects the center of the object as position.
-    pose.position.x = 1;
-    pose.position.y = 1;
-    pose.position.z = 1;
+    // Get the scene name from ROS parameter server
+    std::string scene_name_file;
+    if (!node_handle.getParam("scene_name_file", scene_name_file)) {
+        ROS_FATAL_STREAM("Read from ROS parameter server Error: Check "
+                         "'scene_name_file' field "
+                         "in your launch file");
+        return 0;
+    }
 
 
 
-    gazebo_msgs::ModelState model_state;
-    // This string results from the spawn_urdf call in the box.launch file argument: -model box
-    model_state.model_name = std::string("box");
-    model_state.pose = pose;
-    model_state.reference_frame = std::string("world");
+    //** START TASK **
+    ROS_INFO("**START TASK");
+    time.sleep();
+    group.setPlanningTime(45.0);
+
+    // Init Objects
+    ROS_INFO("**ADD COLLISION");
+    arm_jobs::addCollisionObjects(planning_scene_interface, scene_name_file);
+    time.sleep();
+
+    // Pick target object
+    ROS_INFO("**PICK");
+    arm_jobs::pick(group);
+    time.sleep();
+
+    // Place target Object
+    ROS_INFO("**PLACE");
+    arm_jobs::place(group);
+    time.sleep();
 
 
-    gazebo_model_state_pub.publish(model_state);
 
-    ros::spin();
+    // Finish
+    ROS_INFO("**FINISH");
+    ros::shutdown();
     return 0;
 }

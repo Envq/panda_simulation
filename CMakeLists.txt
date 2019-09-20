@@ -62,8 +62,8 @@ include_directories(
 set(MY_LIBS ${PROJECT_SOURCE_DIR}/src/my_libs)
 
 
-add_executable(load_scene  src/load_scene.cpp ${MY_LIBS}/scene_planner.cpp)
-target_link_libraries(load_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})
+# add_executable(load_scene  src/load_scene.cpp ${MY_LIBS}/scene_planner.cpp)
+# target_link_libraries(load_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})
 
-add_executable(gazebo_scene  src/gazebo_scene.cpp)
-target_link_libraries(gazebo_scene ${catkin_LIBRARIES})
+add_executable(gazebo_scene  src/gazebo_scene.cpp ${MY_LIBS}/arm_jobs.cpp)
+target_link_libraries(gazebo_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})
