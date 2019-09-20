@@ -156,6 +156,7 @@ I used these extensions:
 - **c/c++ snippets** by harsh
 - **c++ intellisense** by austin
 - **python** by microsoft
+- **urdf** by smilerobotics
 - **clang-format** by xaver
 - **doxgen documentation** by christoph schlosser
 - **cmake** by twxs

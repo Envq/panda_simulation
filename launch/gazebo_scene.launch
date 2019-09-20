@@ -1,8 +1,6 @@
 <launch>
-    <param name="box_description" command="$(find xacro)/xacro $(find panda_controller)/models/box.xacro"/>
-    <node name="box_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" args="robot_description:=box_description" />
-    <node name="spawn_object" pkg="gazebo_ros" type="spawn_model" args="-param box_description -urdf -model box"/>
-
+    <!-- launch targets spawner -->
+    <!-- <include file="$(find panda_controller)/launch/targets_spawn.launch"/> -->
 
     <!-- launch node -->
     <node pkg="panda_controller" type="gazebo_scene" name="gazebo_scene"/>
