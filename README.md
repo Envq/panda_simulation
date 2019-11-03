@@ -1,4 +1,4 @@
-# Panda Controller
+# Panda Simulation
 
 This is a set of nodes for simulate on Gazebo the Panda arm (Franka Emika)
 
