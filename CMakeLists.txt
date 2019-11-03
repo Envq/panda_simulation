@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(panda_controller)
+project(panda_simulation)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++14)
@@ -62,8 +62,8 @@ include_directories(
 set(MY_LIBS ${PROJECT_SOURCE_DIR}/src/my_libs)
 
 
-# add_executable(load_scene  src/load_scene.cpp ${MY_LIBS}/scene_planner.cpp)
-# target_link_libraries(load_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})
+add_executable(load_scene  src/load_scene.cpp ${MY_LIBS}/scene_planner.cpp)
+target_link_libraries(load_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})
 
 add_executable(gazebo_scene  src/gazebo_scene.cpp ${MY_LIBS}/arm_jobs.cpp)
 target_link_libraries(gazebo_scene ${catkin_LIBRARIES} boost_filesystem ${JSONCPP_LIBRARIES})

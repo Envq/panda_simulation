@@ -12,7 +12,7 @@
                 "${HOME}/panda_ws/src/franka_ros/franka_example_controllers/include/**",
                 "${HOME}/panda_ws/src/franka_ros/franka_gripper/include/**",
                 "${HOME}/panda_ws/src/franka_ros/franka_hw/include/**",
-                "${HOME}/panda_ws/src/panda_controller/include/**",
+                "${HOME}/panda_ws/src/panda_simulation/include/**",
                 "/usr/include/**"
             ],
             "name": "ROS",

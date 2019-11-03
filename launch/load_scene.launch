@@ -1,5 +1,5 @@
 <launch>
-  <node name="load_scene" pkg="panda_controller" type="load_scene" respawn="false" output="screen">
-    <param name="scene_name_file" value="scene2"/>
+  <node name="load_scene" pkg="panda_simulation" type="load_scene" respawn="false" output="screen">
+    <param name="scene_name_file" value="scene1"/>
   </node>
 </launch>

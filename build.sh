@@ -10,12 +10,13 @@ echo "#######################"
 echo "##  Create workspace  #"
 echo "#######################"
 
+
+echo "##  Move panda_simulation directory  ##"
 mkdir -p ~/panda_ws/src
 
-cd ~/panda_ws/src
+mv panda_simulation ~/panda_ws/src
 
-echo "##  Move panda_controller directory  ##"
-mv panda_controller .
+cd ~/panda_ws/src
 
 echo "##  Get dependencies from github  ##"
 
@@ -31,7 +32,7 @@ cd ~/github
 
 git clone --recursive https://github.com/frankaemika/libfranka
 
-mkdir libfranka/build
+mkdir -p libfranka/build
 
 cd libfranka/build
 

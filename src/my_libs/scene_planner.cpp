@@ -2,7 +2,7 @@
 
 
 // Constants
-static const std::string PACKAGE_NAME = "panda_controller";
+static const std::string PACKAGE_NAME = "panda_simulation";
 static const std::string DIRECTORY_NAME = "scenes";
 
 

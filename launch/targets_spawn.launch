@@ -1,9 +1,9 @@
 <launch>
     <!-- send urdf to param server -->
     <param name="table_description" command="$(find xacro)/xacro 
-		$(find panda_controller)/models/table.urdf.xacro" />
+		$(find panda_simulation)/models/table.urdf.xacro" />
     <param name="object_description" command="$(find xacro)/xacro 
-		$(find panda_controller)/models/object.urdf.xacro" />
+		$(find panda_simulation)/models/object.urdf.xacro" />
 
 
     <!-- spawn objects in gazebo -->

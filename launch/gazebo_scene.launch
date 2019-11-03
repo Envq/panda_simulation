@@ -1,9 +1,9 @@
 <launch>
     <!-- launch targets spawner -->
-    <include file="$(find panda_controller)/launch/targets_spawn.launch"/>
+    <include file="$(find panda_simulation)/launch/targets_spawn.launch"/>
     
     <!-- launch node -->
-    <node name="gazebo_scene" pkg="panda_controller" type="gazebo_scene" respawn="false" output="screen" >
+    <node name="gazebo_scene" pkg="panda_simulation" type="gazebo_scene" respawn="false" output="screen" >
         <param name="scene_name_file" value="scene2"/>
     </node>
 </launch>
